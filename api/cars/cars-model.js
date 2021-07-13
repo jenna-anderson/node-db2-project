@@ -6,15 +6,16 @@ const getAll = async () => {
 }
 
 const getById = async id => {
-  const [car] = await db
-    .select('make', 'mileage', 'model', 'title', 'transmission', 'vin')
-    .from('cars')
+  const [car] = await db('cars')
     .where('id', id)
   return car
 }
 
-const create = () => {
-  console.log("success")
+const create = async (carInfo) => {
+  const [id] = await db('cars')
+    .insert(carInfo)
+  const newCar = await getById(id)
+  return newCar
 }
 
 module.exports = {
