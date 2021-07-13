@@ -14,7 +14,7 @@ const getById = async id => {
 }
 
 const create = () => {
-  // DO YOUR MAGIC
+  console.log("success")
 }
 
 module.exports = {

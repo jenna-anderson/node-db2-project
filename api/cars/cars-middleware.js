@@ -1,3 +1,4 @@
+require('express')
 const Cars = require('./cars-model')
 
 const checkCarId = async (req, res, next) => {
@@ -20,7 +21,33 @@ const checkCarId = async (req, res, next) => {
 }
 
 const checkCarPayload = (req, res, next) => {
-  // DO YOUR MAGIC
+  const { vin, make, model, mileage } = req.body
+  if(!vin){
+    next({
+      status: 400,
+      message: 'vin is missing'
+    })
+  }
+  if(!make){
+    next({
+      status: 400,
+      message: 'make is missing'
+    })
+  }
+  if(!model){
+    next({
+      status: 400,
+      message: 'model is missing'
+    })
+  }
+  if(!mileage){
+    next({
+      status: 400,
+      message: 'mileage is missing'
+    })
+  } else {
+    next()
+  }
 }
 
 const checkVinNumberValid = (req, res, next) => {
